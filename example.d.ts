@@ -20,9 +20,6 @@ interface Product {
 
   /** Where it comes from */
   origin?: Origin;
-
-  /** Additional info */
-  props: { [k:string]: string; };
 }
 
 interface Ordered {
