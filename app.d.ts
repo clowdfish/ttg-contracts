@@ -69,3 +69,13 @@ interface Locale {
 interface Translation {
 
 }
+
+/**
+ * The user object being attached to the response.
+ */
+interface User {
+  id: number;
+  email: string;
+  twitter?: string;
+  token?: string;
+}
