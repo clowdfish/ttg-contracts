@@ -3,5 +3,9 @@
  */
 interface ErrorResponse {
 
+  /** Error message */
   message: string;
+
+  /** HTTP status code of response */
+  statusCode: number;
 }
