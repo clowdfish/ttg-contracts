@@ -7,5 +7,5 @@ interface ErrorResponse {
   message: string;
 
   /** HTTP status code of response */
-  statusCode: number;
+  statusCode?: number;
 }
