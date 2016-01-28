@@ -414,8 +414,32 @@ export interface UserPreference {
   value: string;
 
   /** User preference category */
-  category: string;
+  category?: string;
 
   /** User preference description */
-  description: string;
+  description?: string;
+}
+
+/**
+ * A user favorite that can be either a place or a route.
+ */
+export interface Favorite {
+
+  id?: number;
+
+  origin: {
+    description: string
+    location: GeoLocation;
+    type?: LocationOption;
+  };
+
+  destination?: {
+    description: string
+    location: GeoLocation;
+    type?: LocationOption;
+  };
+
+  position?: number;
+
+  transport?: TravelOption;
 }
