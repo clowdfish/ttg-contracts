@@ -1,7 +1,16 @@
 /**
+ * Suggestion types.
+ */
+export enum SuggestionType {
+  address,
+  event,
+  meetimg
+}
+
+/**
  * Data structure of the available countries.
  */
-interface Country {
+export interface Country {
   /** Two-character country code */
   code: string;
 
@@ -12,7 +21,7 @@ interface Country {
 /**
  * Data structure that holds the information for different currencies.
  */
-interface Currency {
+export interface Currency {
 
   /** Three letter currency code e.g. USD */
   code: string;
@@ -39,7 +48,7 @@ interface Currency {
 /**
  * Data structure of the available locales.
  */
-interface Locale {
+export interface Locale {
 
   /** Two-character language code (ISO 639‑1) */
   code: string;
@@ -66,14 +75,42 @@ interface Locale {
 /**
  * The translation object for a specific language.
  */
-interface Translation {
+export interface Translation {
 
+}
+
+/**
+ * Suggestions data structure for the search from.
+ */
+export interface Suggestion {
+
+  /** Title of the suggestion being shown in the search box drop down. */
+  title: string;
+
+  /** Location information for the suggestion */
+  location: {
+
+    /** Latitude @type double */
+    latitude:number;
+
+    /** Longitude @type double */
+    longitude:number;
+  };
+
+  /** Suggestion type */
+  type: SuggestionType;
+
+  /** Detailled information */
+  details?: string;
+
+  /** A reference url for the suggestion */
+  url?: string;
 }
 
 /**
  * The user object being attached to the response.
  */
-interface User {
+export interface User {
   id: number;
   email: string;
   twitter?: string;
