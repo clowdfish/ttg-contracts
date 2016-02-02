@@ -96,10 +96,10 @@ export interface Suggestion {
   /** Location information for the suggestion */
   location: {
 
-    /** Latitude @type double */
+    /** Latitude */
     latitude:number;
 
-    /** Longitude @type double */
+    /** Longitude */
     longitude:number;
   };
 
