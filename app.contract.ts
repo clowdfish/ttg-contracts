@@ -7,6 +7,9 @@ export enum SuggestionType {
   meetimg
 }
 
+/**
+ * User licence types.
+ */
 export enum UserLicence {
   free,
   pro,
@@ -17,6 +20,7 @@ export enum UserLicence {
  * Data structure of the available countries.
  */
 export interface Country {
+
   /** Two-character country code */
   code: string;
 
@@ -119,7 +123,11 @@ export interface Suggestion {
 export interface User {
   id: number;
   email: string;
-  twitter?: string;
-  token?: string;
   licence?: UserLicence;
+
+  /** Twitter user name */
+  twitter?: string;
+
+  /** Auth token that must be send to the back end API with every request */
+  token?: string;
 }

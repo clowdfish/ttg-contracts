@@ -26,6 +26,15 @@ export enum LocationOption {
 }
 
 /**
+ * Public transport vehicle types.
+ */
+export enum VehicleType {
+  tram,
+  undeground,
+  rail
+}
+
+/**
  * Search data to retrive detail information for a trip.
  */
 export interface DetailSearchData {
@@ -135,7 +144,7 @@ export interface HotelSearchData {
   /** IP address of the client */
   ipAddress: string;
 
-  /** The identifier string of the user agent */
+  /** The identifier string of the user's browser */
   userAgent: string;
 }
 
@@ -151,48 +160,10 @@ export interface TripData {
   sessionId: string;
 
   /** The origin identifier */
-  origin: {
-
-    /** Description of the _origin_ location */
-    description: string;
-
-    /** The origin location */
-    location: GeoLocation;
-
-    /** Location type */
-      type?: LocationOption;
-
-    /** Timezone e.g. Europe/Berlin */
-    timeZone: string;
-
-    /** Address of the location */
-    address?: string;
-
-    /** Country name */
-    country?: string;
-  };
+  origin: Location;
 
   /** The destination identifier */
-  destination: {
-
-    /** Description of the destination location */
-    description: string;
-
-    /** The destination location */
-    location: GeoLocation;
-
-    /** Location type */
-      type: LocationOption;
-
-    /** Timezone e.g. Europe/Berlin */
-    timeZone: string;
-
-    /** Address of the location */
-    address?: string;
-
-    /** Country name */
-    country?: string;
-  };
+  destination: Location;
 
   /** Timing information of the appointment as sent by the client */
   timing: {
@@ -246,23 +217,11 @@ export interface TripSegmentContainer {
  */
 export interface TripSegmentData {
 
-  start:{
-    type: number;
-    description: string;
-    location: GeoLocation;
-    timeZone: string;
-    address?: string;
-    country?: string;
-  };
+  /** The start location of the the trip segment */
+  start: Location;
 
-  end:{
-    type:number;
-    description:string;
-    location: GeoLocation;
-    timeZone:string;
-    address?:string;
-    country?:string;
-  };
+  /** The end location of the the trip segment */
+  end: Location;
 
   /** Departure time @pattern [2-9][0-9]{3}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2} */
   departureTime: string;
@@ -273,22 +232,38 @@ export interface TripSegmentData {
   /** Duration in minutes @type integer */
   duration: number;
 
-  transferDuration: number; // minutes
-  distance: number; // km
-  path: string; // polyline format
+  /** Transfer duration to get from the current segment's end to the next one's start in minutes */
+  transferDuration: number;
+
+  /** Distance of the trip segment in km */
+  distance: number;
+
+  /** Segment path in the polyline format */
+  path: string;
+
+  /** Means of travel */
   type: TravelOption;
+
+  /** Does the segment cover a major part of the whole trip */
   isMajor:number;
-  information?:string; // includes information for flights, connections, ...
-  details?:any; // could be flight details, train details, ...
-  price?:{
-    amount:number;
-    currency:string;
-    estimate:boolean;
-  };
+
+  /** Any additional information for flights, trains, connections, ...*/
+  details?:any;
+
+  /** Price for the trip segment */
+  price?: Price;
+
+  /** Provider details for the segment */
   provider?:Provider;
-  pricingOptions?:PricingOption[];
+
+  /** Optional timing alternatives for the segment */
+  timingAlternatives?:TimingAlternative[];
+
+  /** Optional pricing alternatives from different operators for the segment */
+  pricingAlternatives?:PricingOption[];
+
+  /** Some providers might provide a booking link that could be convenient for the user */
   bookingLink?:string;
-  alternatives?:TimingAlternative[];
 }
 
 /**
@@ -311,68 +286,110 @@ export interface TimingAlternative {
   /** Number of stops @type integer */
   stops: number;
 
-
+  /** Segments of the timing alternative */
   segments:TripSegmentData[];
 
   /** The polyline used in Google Maps */
   path?: string;
 
-  /** Pricing information */
-  price?: {
-    amount:number;
-    currency:string;
-    estimate?:boolean;
-  }
+  price?: Price;
 
+  /** Alternative pricing options */
+  pricingAlternatives?:PricingOption[];
 
-  pricingOptions?:PricingOption[];
-
-
+  /** Detailed information for flight segments */
   flightDetails?:FlightDetails;
 
-
+  /** Detailed information for public transport segments */
   publicTransportDetails?:PublicTransportDetails;
-
-
-  information?:string;
 }
 
+/**
+ * Flight carrier information.
+ */
 export interface Carrier {
+
+  /** Operator code */
   code:string;
+
   name:string;
+
+  /** Reference url for a logo of the provider */
   imageUrl?:string;
+
+  /** How is the carrier abbreviated on information screens */
   displayCode?:string;
 }
 
+/**
+ * Flight details
+ */
 export interface FlightDetails {
   carriers:Carrier[];
+
+  /** Which carrier operates the flight */
   operatingCarriers?:Carrier[];
-  flightNumbers?:{
-    carrier:Carrier;
-    flightNumber:string;
-  }[];
+
+  flightNumbers?:FlightNumbers[];
 }
 
+/**
+ * Flight number of the flight connection.
+ */
+export interface FlightNumbers {
+  carrier?:Carrier;
+
+  /** Flight number given by the provider */
+  flightNumber:string;
+}
+
+/**
+ * Price data structure.
+ */
+export interface Price {
+  amount:number;
+
+  /** Three letter currency code @pattern [A-Z]{3} */
+  currency:string;
+
+  /** Is the price a concrete offer or just an estimate */
+  estimate?:boolean;
+}
+
+/**
+ * Public transport details.
+ */
 export interface PublicTransportDetails {
-  line:{
-    name:string;
-    headSign:string;
+  line: {
+    /** Name of the connection / line */
+    name: string;
+
+    /** The direction of the connection */
+    headSign: string;
   };
-  vehicle:{
-    type:string;
-  };
-  agencies:{
-    name:string;
-    url:string;
-    imageUrl?:string;
-  }[];
-  interval?:number; // minutes
+
+  vehicle: VehicleType;
+  provider: Provider[];
+
+  /** Interval of the connection in minutes */
+  interval?:number;
 }
 
+/**
+ * Provider information of train, flight or hotel providers.
+ */
 export interface Provider {
+
   name:string;
-  imageUrl?:string;
+
+  /** Reference website of the provider */
   url?:string;
+
+  /** Reference url for a logo of the provider */
+  imageUrl?:string;
+
+  /** Provider type like TravelAgent or RailOperastor */
+  type?:string;
 }
 
 /**
@@ -384,21 +401,54 @@ export interface Hotel {
   id:number;
 
   name:string;
+  location:GeoLocation;
+  price:Price;
+
+  /** Street and house number */
   address:string;
+
   city:string;
   postalCode:string;
   imageUrl:string;
-  standard:number; // star rating as float
-  rating:number; // TripAdvisor rating as float
+
+  /** star rating e.g. 3.5 stars */
+  standard:number;
+
+  /** TripAdvisor rating */
+  rating:number;
+
+  /** Distance from the target location */
   distance:number;
 
   /** Distance unit (MI or KM) @pattern [I-M]{2} */
   distanceUnit:string;
 
-  location:GeoLocation;
-  price:number;
-  currency:string;
+  /** Reference url to the hotel website */
   deepLink:string;
+}
+
+/**
+ * Full stack location information.
+ */
+export interface Location {
+
+  /** Description of the destination location */
+  description: string;
+
+  /** The destination location */
+  location: GeoLocation;
+
+  /** Location type */
+  type?: LocationOption;
+
+  /** Timezone e.g. Europe/Berlin */
+  timeZone?: string;
+
+  /** Address of the location */
+  address?: string;
+
+  /** Country name */
+  country?: string;
 }
 
 /**
@@ -414,19 +464,14 @@ export interface GeoLocation {
 }
 
 /**
- *
+ * An alternative pricing for a given segment.
  */
 export interface PricingOption {
-  agents:{
-    name:string;
-    imageUrl:string;
-    type?:string; // e.g. "TravelAgent"
-  }[];
-  quoteAgeInMinutes?:number;
-  price:{
-    amount:number;
-    currency:string;
-  };
+  provider: Provider[];
+  quoteAgeInMinutes?: number;
+  price: Price;
+
+  /** The reference to the concrete pricing */
   deeplinkUrl:string;
 }
 
@@ -455,19 +500,15 @@ export interface Favorite {
 
   id?: number;
 
-  origin: {
-    description: string
-    location: GeoLocation;
-    type?: LocationOption;
-  };
+  /** If only the origin is given it is a location favorite */
+  origin: Location;
 
-  destination?: {
-    description: string
-    location: GeoLocation;
-    type?: LocationOption;
-  };
+  /** The destination is arbitrary and defines a connection favorite */
+  destination?: Location;
 
+  /** Position of the favorite in the overall list of favorites */
   position?: number;
 
+  /** The user can add a preferred transport fo a favorite */
   transport?: TravelOption;
 }
