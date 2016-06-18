@@ -209,7 +209,7 @@ export interface TripData {
 export interface TripSegmentContainer {
 
   /** Is it a major segment container */
-  isMajor: boolean|number;
+  isMajor: number;
 
   /** The available alternatives for the current _TripSegmentContainer_ */
   alternatives:TripSegmentData[][];
