@@ -30,8 +30,11 @@ export enum LocationOption {
  */
 export enum VehicleType {
   tram,
-  undeground,
-  rail
+  underground,
+  rail,
+  bus,
+  ferry,
+  other
 }
 
 /**
@@ -206,7 +209,7 @@ export interface TripData {
 export interface TripSegmentContainer {
 
   /** Is it a major segment container */
-  isMajor: boolean;
+  isMajor: boolean|number;
 
   /** The available alternatives for the current _TripSegmentContainer_ */
   alternatives:TripSegmentData[][];
