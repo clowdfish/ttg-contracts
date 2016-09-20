@@ -297,6 +297,8 @@ export interface TimingAlternative {
 
   price?: Price;
 
+  bookingLink?: string;
+
   /** Alternative pricing options */
   pricingAlternatives?:PricingOption[];
 
