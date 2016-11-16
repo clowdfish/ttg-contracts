@@ -454,6 +454,9 @@ export interface Location {
 
   /** Country name */
   country?: string;
+
+  /** Country code */
+  countryCode?: string;
 }
 
 /**
