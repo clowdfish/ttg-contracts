@@ -144,11 +144,11 @@ export interface HotelSearchData {
   // /** Number of days to stay @type integer */
   // duration: number;
 
-  // /** The currency code @pattern [a-z]{2}-[A-Z]{2} */
-  // locale: string;
+  /** The currency code @pattern [a-z]{2}-[A-Z]{2} */
+  locale: string;
 
-  // /** The currency code @pattern [A-Z]{3} */
-  // currency: string;
+  /** The currency code @pattern [A-Z]{3} */
+  currency: string;
 
   // /** IP address of the client */
   // ipAddress: string;
