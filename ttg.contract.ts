@@ -438,6 +438,19 @@ export interface Hotel {
   deepLink:string;
 }
 
+export interface Car {
+  numberOfBags: number;
+  carClassId: string;
+  numberOfDoors: number;
+  imageId: string;
+  price: number;
+  numberOfSeats: number;
+  vehicle: string;
+  websiteId: string;
+  location:Geolocation;
+  deepLink: string;
+}
+
 /**
  * Full stack location information.
  */
