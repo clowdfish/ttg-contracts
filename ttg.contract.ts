@@ -157,6 +157,40 @@ export interface HotelSearchData {
   // userAgent: string;
 }
 
+
+/**
+ * The search data object for rental cars coming from the client.
+ */
+export interface RentalCarsSearchData {
+
+  /** ISO country code, or specified location schema */
+  market: string;
+
+  /** ISO currency code */
+  currency: string;
+
+  /** ISO locale code (language and country) */
+  locale: string;
+
+  /** Location where to pickup */
+  pickUpPlace: GeoLocation;
+
+  /** Location where to drop off */
+  dropOffPlace: GeoLocation;
+
+  /** Formatted as ISO Date and Time format (YYYY-MM-DDThh:mm) */
+  pickUpDateTime: string; 
+
+  /** Formatted as ISO Date and Time format (YYYY-MM-DDThh:mm) */
+  dropOffDateTime: string;
+
+  /** Must be between 21 and 75 (inclusive) */
+  driverAge: number;
+
+  /** Must be a valid IP address (IPv4 only) */
+  userIP: string;
+}
+
 /**
  * Trip data being returned by the backend for a trip search.
  */
