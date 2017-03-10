@@ -131,3 +131,19 @@ export interface User {
   /** Auth token that must be send to the back end API with every request */
   token?: string;
 }
+
+/**
+ * The parameter to update user profile.
+ */
+export interface ProfileRequest {
+  firstName?: string;
+  lastName?: string;
+  firstStreet?: string;
+  secondStreet?: string;
+  country?: string;
+  zipCode?: number;
+  city?: string;
+  company?: string;
+  birthDay?: string;
+  gender?: boolean;
+}
