@@ -16,6 +16,11 @@ export enum UserLicence {
   business
 }
 
+export enum Gender {
+  male,
+  female
+}
+
 /**
  * Data structure of the available countries.
  */
@@ -144,6 +149,15 @@ export interface ProfileRequest {
   zipCode?: number;
   city?: string;
   company?: string;
+  firstNameBilling?: string;
+  lastNameBilling?: string;
+  firstStreetBilling?: string;
+  secondStreetBilling?: string;
+  countryBilling?: string;
+  zipCodeBilling?: number;
+  cityBilling?: string;
+  companyBilling?: string;
+  passportID?: string;
   birthDay?: string;
-  gender?: boolean;
+  gender?: Gender;
 }
