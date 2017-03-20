@@ -37,6 +37,12 @@ export enum VehicleType {
   other
 }
 
+export interface DetailSearchTripsData {
+  oneWay: DetailSearchData;
+
+  roundTrip?: DetailSearchData;
+}
+
 /**
  * Search data to retrive detail information for a trip.
  */
