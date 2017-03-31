@@ -16,6 +16,11 @@ export enum UserLicence {
   business
 }
 
+export enum Gender {
+  male,
+  female
+}
+
 /**
  * Data structure of the available countries.
  */
@@ -130,4 +135,29 @@ export interface User {
 
   /** Auth token that must be send to the back end API with every request */
   token?: string;
+}
+
+/**
+ * The parameter to update user profile.
+ */
+export interface ProfileRequest {
+  firstName?: string;
+  lastName?: string;
+  firstStreet?: string;
+  secondStreet?: string;
+  country?: string;
+  zipCode?: number;
+  city?: string;
+  company?: string;
+  firstNameBilling?: string;
+  lastNameBilling?: string;
+  firstStreetBilling?: string;
+  secondStreetBilling?: string;
+  countryBilling?: string;
+  zipCodeBilling?: number;
+  cityBilling?: string;
+  companyBilling?: string;
+  passportID?: string;
+  birthDay?: string;
+  gender?: Gender;
 }
