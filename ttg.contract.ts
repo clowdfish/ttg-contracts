@@ -85,6 +85,45 @@ export interface DetailSearchData {
 /**
  * The search data object coming from the client.
  */
+export interface SearchTripData {
+
+  /** Origin location */
+  origin: GeoLocation;
+
+  /** Description of the origin location */
+  originDescription?: string;
+
+  /** Destination location */
+  destination: GeoLocation;
+
+  /** Description of the destination location */
+  destinationDescription?: string;
+
+  /** Timing of the appointment @pattern [2-9][0-9]{3}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2} */
+  startMeeting: string;
+
+  /** Timing of the appointment @pattern [2-9][0-9]{3}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2} */
+  endMeeting: string;
+
+  /** Optimizing the trip towards a target date or from a start date */
+  targetDate: boolean;
+
+  /** The currency code @pattern [A-Z]{3} */
+  currency: string;
+
+  /** The currency code @pattern [a-z]{2}-[A-Z]{2} */
+  locale: string;
+
+  /** Number of travellers @type integer @min 1 @max 5 */
+  numberOfTravelers?: number;
+
+  /** Temporarily overwritten user preferences */
+  preferences?: UserPreference[];
+}
+
+/**
+ * The search data object coming from the client.
+ */
 export interface SearchData {
 
   /** Origin location */
