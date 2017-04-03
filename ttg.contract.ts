@@ -38,11 +38,12 @@ export enum VehicleType {
 }
 
 export interface DetailSearchTripsData {
-  oneWay: DetailSearchData;
-
-  roundTrip?: DetailSearchData;
+  trips: DetailSearchData[];
 }
 
+export interface SearchTripsData {
+  trips: SearchTripData[];
+}
 /**
  * Search data to retrive detail information for a trip.
  */
