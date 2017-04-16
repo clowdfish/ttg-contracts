@@ -44,6 +44,15 @@ export interface DetailSearchTripsData {
 export interface SearchTripsData {
   trips: SearchTripData[];
 }
+
+export interface BookingRequest {
+  trips: TripKeyRequest[];
+}
+
+export interface TripKeyRequest{
+    tripKey: string;
+    sessionId?: string;
+}
 /**
  * Search data to retrive detail information for a trip.
  */
