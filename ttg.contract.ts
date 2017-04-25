@@ -615,3 +615,7 @@ export interface Favorite {
   /** The user can add a preferred transport fo a favorite */
   transport?: TravelOption;
 }
+
+export interface EmailRequest {
+  email: string;
+}
