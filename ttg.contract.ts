@@ -619,3 +619,7 @@ export interface Favorite {
 export interface EmailRequest {
   email: string;
 }
+
+export interface TokenRequest {
+  token: string;
+}
