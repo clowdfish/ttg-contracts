@@ -20,3 +20,14 @@ interface LoginInformation {
   email: string;
   password: string;
 }
+
+
+/**
+ * SignUp information for the user.
+ */
+interface SignUpInformation {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+}
