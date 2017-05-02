@@ -26,7 +26,7 @@ interface LoginInformation {
  * SignUp information for the user.
  */
 interface SignUpInformation {
-  email: string;
+  token: string;
   password: string;
   firstName: string;
   lastName: string;
