@@ -1,3 +1,4 @@
+
 /**
  * Travel options.
  */
@@ -43,6 +44,15 @@ export interface DetailSearchTripsData {
 
 export interface SearchTripsData {
   trips: SearchTripData[];
+}
+
+export interface BookingRequest {
+  trips: TripKeyRequest[];
+}
+
+export interface TripKeyRequest{
+    tripKey: string;
+    sessionId?: string;
 }
 /**
  * Search data to retrive detail information for a trip.
@@ -609,4 +619,12 @@ export interface Favorite {
 
   /** The user can add a preferred transport fo a favorite */
   transport?: TravelOption;
+}
+
+export interface EmailRequest {
+  email: string;
+}
+
+export interface TokenRequest {
+  token: string;
 }

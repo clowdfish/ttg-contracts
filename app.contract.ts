@@ -137,6 +137,15 @@ export interface User {
   token?: string;
 }
 
+export interface Provider{
+  name?: string;
+  detail?: string;
+}
+
+export interface Location{
+  latitude: number;
+  longitude: number;
+}
 /**
  * The parameter to update user profile.
  */
@@ -161,3 +170,27 @@ export interface ProfileRequest {
   birthDay?: string;
   gender?: Gender;
 }
+
+export interface InvoicingRequest {
+  firstName?: string;
+  lastName?: string;
+  email: string;
+  phone?: string;
+  street?: string;
+  city?: string;
+  postal?: string;
+  country?: string;
+  companyName?: string;
+  taxNumber?: string;
+  booking: string;
+}
+
+export interface PassengerRequest {
+  name: string;
+  birthDay: string;
+  passportID: string;
+  gender: Gender;
+  title?: string;
+  booking: string;
+}
+
