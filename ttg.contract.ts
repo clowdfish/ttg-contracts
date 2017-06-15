@@ -485,7 +485,7 @@ export interface Hotel {
   address:string;
 
   city:string;
-  postalCode:string;
+  postalCode?:string;
   imageUrl:string;
 
   /** star rating e.g. 3.5 stars */
@@ -502,6 +502,8 @@ export interface Hotel {
 
   /** Reference url to the hotel website */
   deepLink:string;
+
+  bookingLink?: string;
 }
 
 export interface Car {
@@ -542,6 +544,9 @@ export interface Location {
 
   /** Country code */
   countryCode?: string;
+
+  /** airport code */
+  code?: string;
 }
 
 /**
