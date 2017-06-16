@@ -38,6 +38,10 @@ export enum VehicleType {
   other
 }
 
+export interface SearchSegmentsData {
+  segments: TripSegmentData[];
+}
+
 export interface DetailSearchTripsData {
   trips: DetailSearchData[];
 }
