@@ -440,6 +440,10 @@ export interface FlightNumbers {
 export interface Price {
   amount:number;
 
+  price? : number;
+
+  taxes?: number;
+
   /** Three letter currency code @pattern [A-Z]{3} */
   currency:string;
 
