@@ -356,6 +356,27 @@ export interface TripSegmentData {
 }
 
 /**
+ * Trip segment data structure.
+ */
+export interface TripSegmentSimpleData {
+
+  /** The start location of the the trip segment */
+  start: Location;
+
+  /** The end location of the the trip segment */
+  end: Location;
+
+  /** Departure time @pattern [2-9][0-9]{3}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2} */
+  departureTime: string;
+
+  /** Arrival time @pattern [2-9][0-9]{3}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2} */
+  arrivalTime: string;
+
+  /** Price for the trip segment */
+  price?: Price;
+}
+
+/**
  * Timing alternatives data structure.
  */
 export interface TimingAlternative {
@@ -635,4 +656,13 @@ export interface EmailRequest {
 
 export interface TokenRequest {
   token: string;
+}
+
+export interface RoundTripsRequest {
+  start: TripSegmentSimpleData;
+  end: TripSegmentSimpleData;
+}
+
+export interface ListRoundTripsRequest {
+  roundtrips: RoundTripsRequest[];
 }
